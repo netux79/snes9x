@@ -1377,14 +1377,15 @@ extern struct SLineMatrixData	LineMatrixData[240];
 #undef NAME2
 #undef DRAW_PIXEL
 
-// Hires pixel plotter, this combines the main and subscreen pixels as appropriate to render hires or pseudo-hires images.
-// Use it only on the main screen, subscreen should use Normal2x1 instead.
-// Hires math:
-//     Main pixel is mathed as normal: Main(x, y) * Sub(x, y).
-//     Sub pixel is mathed somewhat weird: Basically, for Sub(x + 1, y) we apply the same operation we applied to Main(x, y)
-//     (e.g. no math, add fixed, add1/2 subscreen) using Main(x, y) as the "corresponding subscreen pixel".
-//     Also, color window clipping clips Sub(x + 1, y) if Main(x, y) is clipped, not Main(x + 1, y).
-//     We don't know how Sub(0, y) is handled.
+/*Hires pixel plotter, this combines the main and subscreen pixels as appropriate to render hires or pseudo-hires images.
+ Use it only on the main screen, subscreen should use Normal2x1 instead.
+ Hires math:
+     Main pixel is mathed as normal: Main(x, y) * Sub(x, y).
+     Sub pixel is mathed somewhat weird: Basically, for Sub(x + 1, y) we apply the same operation we applied to Main(x, y)
+     (e.g. no math, add fixed, add1/2 subscreen) using Main(x, y) as the "corresponding subscreen pixel".
+     Also, color window clipping clips Sub(x + 1, y) if Main(x, y) is clipped, not Main(x + 1, y).
+     We don't know how Sub(0, y) is handled.
+*/
 
 #define DRAW_PIXEL_H2x1(N, M) \
     if (Z1 > GFX.DB[Offset + 2 * N] && (M)) \
