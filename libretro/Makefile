@@ -155,7 +155,7 @@ else ifeq ($(platform), wii)
 	CC = $(DEVKITPPC)/bin/powerpc-eabi-gcc$(EXE_EXT)
 	CXX = $(DEVKITPPC)/bin/powerpc-eabi-g++$(EXE_EXT)
 	AR = $(DEVKITPPC)/bin/powerpc-eabi-ar$(EXE_EXT)
-	CXXFLAGS += -DGEKKO -mrvl -mcpu=750 -meabi -mhard-float -DBLARGG_BIG_ENDIAN=1 -D__ppc__
+	CXXFLAGS += -DGEKKO -mrvl -mcpu=750 -meabi -mhard-float -DBLARGG_NONPORTABLE=1 -DBLARGG_BIG_ENDIAN=1 -DBLARGG_CPU_POWERPC=1 -D__ppc__
 	STATIC_LINKING = 1
 
 # ARM
